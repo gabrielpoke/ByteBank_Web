@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(BytebankWeb());
@@ -10,6 +12,21 @@ class BytebankWeb extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Dashboard'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Image.asset('images/bytebank_logo.png'),
+            Container(
+              height: 120,
+              width: 100,
+              color: Colors.green,
+              child: Column(
+                children: <Widget>[
+                  Icon(Icons.people),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
