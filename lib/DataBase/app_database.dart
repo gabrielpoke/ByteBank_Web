@@ -2,6 +2,7 @@ import 'package:bytebankweb/models/contact.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+
 Future<Database> createDatabase() {
   return getDatabasesPath().then((dbPath) {
     final String path = join(dbPath, 'bytebank.db');
@@ -24,15 +25,10 @@ Future<int> save(Contact contact) {
     return db.insert('contacts', contactMap);
   });
 }
-
 Future<List<Contact>> findAll() {
-  // ignore: missing_return
   return createDatabase().then((db) {
-    // ignore: missing_return
-    db.query('contacts').then((maps) {
-      // ignore: deprecated_member_use
+    return db.query('contacts').then((maps) {
       final List<Contact> contacts = List();
-
       for (Map<String, dynamic> map in maps) {
         final Contact contact = Contact(
           map['id'],
