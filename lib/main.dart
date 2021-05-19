@@ -1,12 +1,12 @@
-import 'dart:ui';
-
 import 'package:bytebankweb/models/contact.dart';
 import 'package:bytebankweb/screns/Dashboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'DataBase/app_database.dart';
 
 void main() {
   runApp(BytebankWeb());
+
 }
 
 class BytebankWeb extends StatelessWidget {
@@ -26,4 +26,3 @@ class BytebankWeb extends StatelessWidget {
     );
   }
 }
-

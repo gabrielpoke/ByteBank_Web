@@ -24,11 +24,13 @@ Future<int> save(Contact contact) {
     return db.insert('contacts', contactMap);
   });
 }
- Future<List<Contact>> findAll() {
 
+Future<List<Contact>> findAll() {
   // ignore: missing_return
   return createDatabase().then((db) {
+    // ignore: missing_return
     db.query('contacts').then((maps) {
+      // ignore: deprecated_member_use
       final List<Contact> contacts = List();
 
       for (Map<String, dynamic> map in maps) {

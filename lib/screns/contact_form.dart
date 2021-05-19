@@ -49,13 +49,14 @@ class _ContactFormState extends State<ContactForm> {
               padding: const EdgeInsets.only(top: 16.0),
               child: SizedBox(
                 width: double.maxFinite,
+                // ignore: deprecated_member_use
                 child: RaisedButton(
                   onPressed: () {
                     final String name = _nameController.text;
                     final int accountNumber =
                         int.tryParse(_accountController.text);
 
-                    final Contact newContact = Contact(name, accountNumber,0);
+                    final Contact newContact = Contact(0, name, accountNumber);
 
                     Navigator.pop(context, newContact);
                   },

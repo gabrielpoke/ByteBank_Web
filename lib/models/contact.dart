@@ -6,10 +6,10 @@ class Contact {
 
   final int accountNumber;
 
-  Contact(this.name, this.accountNumber, this.id);
+  Contact(this.id, this.name, this.accountNumber);
 
   @override
   String toString() {
-    return 'Contact{name: $name, accountNumber: $accountNumber}';
+    return 'Contact{id: $id, name: $name, accountNumber: $accountNumber}';
   }
 }
