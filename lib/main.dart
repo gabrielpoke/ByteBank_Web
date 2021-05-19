@@ -6,7 +6,6 @@ import 'DataBase/app_database.dart';
 
 void main() {
   runApp(BytebankWeb());
-
 }
 
 class BytebankWeb extends StatelessWidget {
