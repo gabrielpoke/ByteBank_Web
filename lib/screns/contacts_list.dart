@@ -12,27 +12,40 @@ class ContactLista extends StatelessWidget {
       ),
       body: FutureBuilder<List<Contact>>(
         initialData: List(),
-        future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
+        future: findAll(),
         builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              break;
 
-            final List<Contact> Contacts = snapshot.data;
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                final Contact contact = Contacts[index];
-                return _ContactItem(contact);
-              },
-              itemCount: Contacts.length,
-            );
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text('Loading'),
-                CircularProgressIndicator(),
-              ],
-            ),
-          );
+            case ConnectionState.waiting:
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text('Loading'),
+                    CircularProgressIndicator(),
+                  ],
+                ),
+              );
+              break;
+
+            case ConnectionState.active:
+              break;
+
+            case ConnectionState.done:
+              final List<Contact> Contacts = snapshot.data;
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  final Contact contact = Contacts[index];
+                  return _ContactItem(contact);
+                },
+                itemCount: Contacts.length,
+              );
+              break;
+          }
+          return Text('Unknow error detected');
         },
       ),
       floatingActionButton: FloatingActionButton(
