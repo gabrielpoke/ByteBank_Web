@@ -3,7 +3,6 @@ import 'package:bytebankweb/models/contact.dart';
 import 'package:flutter/material.dart';
 import 'contact_form.dart';
 
-
 class ContactLista extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,17 +10,28 @@ class ContactLista extends StatelessWidget {
       appBar: AppBar(
         title: Text('Contatos'),
       ),
-      body: FutureBuilder(
-        future: findAll(),
+      body: FutureBuilder<List<Contact>>(
+        initialData: List(),
+        future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
         builder: (context, snapshot) {
 
-          final List<Contact> Contacts = snapshot.data;
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              final Contact contact = Contacts[index];
-              return _ContactItem(contact);
-            },
-            itemCount: Contacts.length,
+            final List<Contact> Contacts = snapshot.data;
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                final Contact contact = Contacts[index];
+                return _ContactItem(contact);
+              },
+              itemCount: Contacts.length,
+            );
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text('Loading'),
+                CircularProgressIndicator(),
+              ],
+            ),
           );
         },
       ),
