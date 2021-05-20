@@ -1,9 +1,12 @@
-import 'package:bytebankweb/DataBase/app_database.dart';
+import 'package:bytebankweb/DataBase/DAO/contact_dao.dart';
 import 'package:bytebankweb/models/contact.dart';
 import 'package:flutter/material.dart';
+
 import 'contact_form.dart';
 
 class ContactLista extends StatelessWidget {
+  final ContactDao _dao = ContactDao();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,8 +14,9 @@ class ContactLista extends StatelessWidget {
         title: Text('Contatos'),
       ),
       body: FutureBuilder<List<Contact>>(
+        // ignore: deprecated_member_use
         initialData: List(),
-        future: findAll(),
+        future: _dao.findAll(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -35,6 +39,7 @@ class ContactLista extends StatelessWidget {
               break;
 
             case ConnectionState.done:
+              // ignore: non_constant_identifier_names
               final List<Contact> Contacts = snapshot.data;
               return ListView.builder(
                 itemBuilder: (context, index) {
